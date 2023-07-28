@@ -6,12 +6,19 @@ const port = 3000;
 require("./config/mongoose").connect();
 
 const app = express();
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded());
 app.use(passport.initialize());
 app.use("/", require("./routes"));
 
 app.get("/", (req, res) => {
-  res.send();
+  res.json({
+    message: "Welcome to Hospital API",
+    about:
+      "An Application Programming Interface (API) allows a computer to fetch data from another computer",
+    createdBy: "Tarun",
+    launched: 2023,
+    version: 1,
+  });
 });
 
 app.listen(port, () => {
